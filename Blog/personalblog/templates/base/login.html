@@ -1,0 +1,29 @@
+{%extends 'base/home.html'%}
+{% block content %}
+{% if page == 'login'%}
+<div>
+  <form class="form" action="{%url 'login'%}" method="POST">
+    {%csrf_token%}
+    <label for="room_name">Email</label>
+    <input id="username" name="email" type="text" placeholder="e.g. dennis_ivy@email.com /"><br/>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password"
+      placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" /><br/>
+      <button class="btn btn--main" type="submit">Login</button>
+      <p>havent signed up yet?</p>
+      <a href="{%url 'register'%}">Sign Up</a>
+  </form>
+</div>
+{%else%}
+<div>
+  <form method="POST" action="">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Register"/>
+  </form>
+  <p>Already signed up yet?</p>
+  <a href="{%url 'login' %}">Login</a>
+</div>
+{%endif%}
+
+{% endblock content %}
